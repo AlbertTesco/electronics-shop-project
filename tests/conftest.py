@@ -69,3 +69,23 @@ def data_for_test_instantiate_from_csv():
     tested = Item.all[0].name
 
     return tested, expected
+
+
+@pytest.fixture(scope="session")
+def data_for_test_repr():
+    instance = Item("Смартфон", 10000, 20)
+
+    tested = repr(instance)
+    expected = "Item('Смартфон', 10000, 20)"
+
+    return tested, expected
+
+
+@pytest.fixture(scope="session")
+def data_for_test_str():
+    instance = Item("Смартфон", 10000, 20)
+
+    tested = str(instance)
+    expected = "Смартфон"
+
+    return tested, expected

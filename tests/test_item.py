@@ -6,6 +6,7 @@ from src.item import Item
 def test_item(data_for_test_item):
     # instance = Item("Смартфон", 10000, 20)
     tested, expected = data_for_test_item
+
     assert expected[0] == tested[0]
     assert expected[1] == tested[1]
     assert expected[2] == tested[2]
@@ -13,6 +14,7 @@ def test_item(data_for_test_item):
 
 def test_calculate_total_price(data_for_calculate_total_price):
     tested, expected = data_for_calculate_total_price
+
     assert tested == expected
 
 
@@ -27,6 +29,7 @@ def test_name(data_for_test_name_get):
     Test getting item name
     """
     tested, expected = data_for_test_name_get
+
     assert tested == expected
 
 
@@ -47,5 +50,17 @@ def test_string_to_number(data_for_test_string_to_number):
 
 def test_instantiate_from_csv(data_for_test_instantiate_from_csv):
     tested, expected = data_for_test_instantiate_from_csv
+
+    assert tested == expected
+
+
+def test_repr(data_for_test_repr):
+    tested, expected = data_for_test_repr
+
+    assert tested == expected
+
+
+def test_str(data_for_test_str):
+    tested, expected = data_for_test_str
 
     assert tested == expected

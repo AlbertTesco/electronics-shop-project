@@ -16,16 +16,20 @@ class Item:
         :param price: Цена за единицу товара.
         :param quantity: Количество товара в магазине.
         """
-        self.__name = name
-        self.price = float(price)
-        self.quantity = int(quantity)
+        self._name = name
+        self._price = float(price)
+        self._quantity = int(quantity)
         Item.all.append(self)
 
     def __repr__(self):
-        return f"{self.__class__.__name__}('{self.name}', {int(self.price)}, {self.quantity})"
+        return f"{self.__class__.__name__}('{self.name}', {int(self._price)}, {self._quantity})"
 
     def __str__(self):
         return f"{self.name}"
+
+    def __add__(self, other):
+        if isinstance(other, Item) or issubclass(other.__class__, Item):
+            return self._quantity + other._quantity
 
     def calculate_total_price(self) -> float:
         """
@@ -33,20 +37,20 @@ class Item:
 
         :return: Общая стоимость товара.
         """
-        return self.price * self.quantity
+        return self._price * self._quantity
 
     def apply_discount(self) -> None:
         """
         Применяет установленную скидку для конкретного товара.
         """
-        self.price *= Item.pay_rate
+        self._price *= Item.pay_rate
 
     @property
     def name(self) -> str:
         """
         Getter для имени товара в магазине.
         """
-        return self.__name
+        return self._name
 
     @name.setter
     def name(self, value: str) -> None:
@@ -54,9 +58,9 @@ class Item:
         Setter для имени товара в магазине.
         """
         if len(value) > 10:
-            self.__name = value[:10]
+            self._name = value[:10]
         else:
-            self.__name = value
+            self._name = value
 
     @classmethod
     def instantiate_from_csv(cls):
@@ -72,3 +76,11 @@ class Item:
     @staticmethod
     def string_to_number(string: str) -> float:
         return int(float(string))
+
+    @property
+    def price(self):
+        return self._price
+
+    @property
+    def quantity(self):
+        return self._quantity

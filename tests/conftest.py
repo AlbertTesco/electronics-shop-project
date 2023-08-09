@@ -1,7 +1,10 @@
 import pytest
 
 from src.item import Item
+from src.phone import Phone
 
+
+# Fixtures for testing Item class
 
 @pytest.fixture(scope="session")
 def data_for_test_item():
@@ -87,5 +90,47 @@ def data_for_test_str():
 
     tested = str(instance)
     expected = "Смартфон"
+
+    return tested, expected
+
+
+@pytest.fixture(scope="session")
+def data_for_test_add_method():
+    instance_1 = Item("Смартфон", 10000, 20)
+    instance_2 = Item("ПК", 10000, 10)
+
+    expected = 30
+    tested = instance_1 + instance_2
+
+    return tested, expected
+
+
+# Fixtures for testing Phone class
+@pytest.fixture(scope="session")
+def data_for_test_str_method():
+    instance = Phone("Смартфон", 10000, 20, 2)
+
+    tested = str(instance)
+    expected = "Смартфон"
+
+    return tested, expected
+
+
+@pytest.fixture(scope="session")
+def data_for_test_repr_method():
+    instance = Phone("Смартфон", 10000, 20, 2)
+
+    tested = repr(instance)
+    expected = "Phone('Смартфон', 10000, 20, 2)"
+
+    return tested, expected
+
+
+@pytest.fixture(scope="session")
+def data_for_test_get_number_of_sim():
+    instance = Phone("Смартфон", 10000, 20, 2)
+
+    tested = instance.number_of_sim
+    expected = 2
 
     return tested, expected

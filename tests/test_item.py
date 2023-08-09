@@ -64,3 +64,9 @@ def test_str(data_for_test_str):
     tested, expected = data_for_test_str
 
     assert tested == expected
+
+
+def test_add_method(data_for_test_add_method):
+    tested, expected = data_for_test_add_method
+
+    assert tested == expected

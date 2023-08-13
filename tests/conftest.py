@@ -1,6 +1,7 @@
 import pytest
 
 from src.item import Item
+from src.keyboard import Keyboard
 from src.phone import Phone
 
 
@@ -132,5 +133,36 @@ def data_for_test_get_number_of_sim():
 
     tested = instance.number_of_sim
     expected = 2
+
+    return tested, expected
+
+
+# Fixtures for testing Keyboard class
+@pytest.fixture(scope="session")
+def data_for_test_str_method_keyboard():
+    instance = Keyboard('Dark Project KD87A', 9600, 5)
+
+    tested = str(instance)
+    expected = "Dark Project KD87A"
+
+    return tested, expected
+
+
+@pytest.fixture(scope="session")
+def data_for_test_language_keyboard():
+    instance = Keyboard('Dark Project KD87A', 9600, 5)
+
+    tested = instance.language
+    expected = "EN"
+
+    return tested, expected
+
+
+@pytest.fixture(scope="session")
+def data_for_test_change_lang_keyboard():
+    instance = Keyboard('Dark Project KD87A', 9600, 5)
+
+    tested = instance.change_lang().language
+    expected = "RU"
 
     return tested, expected

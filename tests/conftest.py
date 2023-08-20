@@ -6,7 +6,6 @@ from src.phone import Phone
 
 
 # Fixtures for testing Item class
-
 @pytest.fixture(scope="session")
 def data_for_test_item():
     instance = Item("Смартфон", 10000, 20)
@@ -166,3 +165,5 @@ def data_for_test_change_lang_keyboard():
     expected = "RU"
 
     return tested, expected
+
+
